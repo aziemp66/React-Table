@@ -1,9 +1,9 @@
-import { BasicTable } from "./components/AllTabels";
+import { SortingTable } from "./components/AllTabels";
 
 function App() {
 	return (
 		<div className="App">
-			<BasicTable />
+			<SortingTable />
 		</div>
 	);
 }
