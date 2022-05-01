@@ -9,11 +9,17 @@ export const BasicTable = () => {
 	const columns = useMemo(() => COLUMNS, []);
 	const data = useMemo(() => MOCK_DATA, []);
 
-	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-		useTable({
-			columns,
-			data,
-		});
+	const {
+		getTableProps,
+		getTableBodyProps,
+		headerGroups,
+		footerGroups,
+		rows,
+		prepareRow,
+	} = useTable({
+		columns,
+		data,
+	});
 
 	return (
 		<table {...getTableProps()} className={styles.table}>
@@ -48,6 +54,21 @@ export const BasicTable = () => {
 					);
 				})}
 			</tbody>
+			<tfoot>
+				{footerGroups.map((footerGroup) => {
+					return (
+						<tr {...footerGroup.getFooterGroupProps()}>
+							{footerGroup.headers.map((column) => {
+								return (
+									<td {...column.getFooterProps()}>
+										{column.render("Footer")}
+									</td>
+								);
+							})}
+						</tr>
+					);
+				})}
+			</tfoot>
 		</table>
 	);
 };
