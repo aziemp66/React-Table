@@ -1,10 +1,9 @@
-import { BasicTable } from "./components/BasicTable";
-import { CustomTable } from "./components/CustomTable";
+import { BasicTable } from "./components/AllTabels";
 
 function App() {
 	return (
 		<div className="App">
-			<CustomTable />
+			<BasicTable />
 		</div>
 	);
 }
