@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export const COLUMNS = [
 	{
 		Header: "Id",
@@ -33,6 +35,11 @@ export const COLUMNS = [
 		Header: "Phone",
 		Footer: "Phone",
 		accessor: "phone",
+	},
+	{
+		Header: "Date of Creation",
+		accessor: "date_of_creation",
+		Cell: ({ value }) => format(new Date(value), "dd/MM/yyyy"),
 	},
 ];
 
@@ -74,6 +81,10 @@ export const GROUPED_COLUMNS = [
 			{
 				Header: "Phone",
 				accessor: "phone",
+			},
+			{
+				Header: "Date of Creation",
+				accessor: "date_of_creation",
 			},
 		],
 		Footer: "User Info",
@@ -123,6 +134,10 @@ export const CUSTOM_COLUMNS = [
 					{
 						Header: "Phone",
 						accessor: "phone",
+					},
+					{
+						Header: "Date of Creation",
+						accessor: "date_of_creation",
 					},
 				],
 			},

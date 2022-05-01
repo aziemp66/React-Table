@@ -124,7 +124,7 @@ export const CustomTable = () => {
 
 export const SortingTable = () => {
 	// const columns = useMemo(() => COLUMNS, []);
-	const columns = useMemo(() => GROUPED_COLUMNS, []);
+	const columns = useMemo(() => COLUMNS, []);
 	const data = useMemo(() => MOCK_DATA, []);
 
 	const {
