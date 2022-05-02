@@ -5,6 +5,7 @@ import { COLUMNS, GROUPED_COLUMNS, COLUMNS_FILTER } from "./columns";
 
 import styles from "./AllTabels.module.css";
 import { GlobalFilter } from "./GlobalFilter";
+import { ColumnFilter } from "./ColumnFilter";
 
 export const BasicTable = () => {
 	// const columns = useMemo(() => COLUMNS, []);
@@ -289,6 +290,12 @@ export const ColumnFilterTable = () => {
 	const columns = useMemo(() => COLUMNS_FILTER, []);
 	const data = useMemo(() => MOCK_DATA, []);
 
+	const defaultColumn = useMemo(() => {
+		return {
+			Filter: ColumnFilter,
+		};
+	});
+
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -302,6 +309,7 @@ export const ColumnFilterTable = () => {
 		{
 			columns,
 			data,
+			defaultColumn,
 		},
 		useFilters,
 		useGlobalFilter
