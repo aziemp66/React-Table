@@ -1,11 +1,12 @@
 import React from "react";
 
-export const GlobalFilter = ({ filter, setFilter }) => {
+export const ColumnFilter = ({ column }) => {
+	const { filterValue, setFilter } = column;
 	return (
 		<span>
 			Search :{" "}
 			<input
-				value={filter || ""}
+				value={filterValue || ""}
 				onChange={(e) => {
 					setFilter(e.target.value);
 				}}

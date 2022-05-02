@@ -1,10 +1,14 @@
-import { SortingTable, FilteringTable } from "./components/AllTabels";
+import {
+	SortingTable,
+	FilteringTable,
+	ColumnFilterTable,
+} from "./components/AllTabels";
 import styles from "./App.module.css";
 
 function App() {
 	return (
 		<div className={styles.App}>
-			<FilteringTable />
+			<ColumnFilterTable />
 		</div>
 	);
 }
