@@ -1,9 +1,10 @@
-import { SortingTable } from "./components/AllTabels";
+import { SortingTable, FilteringTable } from "./components/AllTabels";
+import styles from "./App.module.css";
 
 function App() {
 	return (
-		<div className="App">
-			<SortingTable />
+		<div className={styles.App}>
+			<FilteringTable />
 		</div>
 	);
 }
