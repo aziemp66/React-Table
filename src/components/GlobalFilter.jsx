@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import { useAsyncDebounce } from "react-table";
+import "regenerator-runtime/runtime";
 
-export const GlobalFilter = ({ filter, setFilter }) => {
+export const GlobalFilter = (props) => {
+	const { filter, setFilter } = props;
+	const [value, setValue] = useState(filter);
+
+	const onChange = useAsyncDebounce((value) => {
+		setFilter(value);
+	}, 400);
+
 	return (
 		<span>
 			Search :{" "}
 			<input
-				value={filter ? filter.value : ""}
+				value={value || ""}
 				onChange={(e) => {
-					setFilter(e.target.value);
+					setValue(e.target.value);
+					onChange(e.target.value);
 				}}
 				placeholder="Type to filter..."
 			/>
