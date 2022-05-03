@@ -186,6 +186,6 @@ export const COLUMNS_FILTER = [
 	{
 		Header: "Date of Creation",
 		accessor: "date_of_creation",
-		Cell: ({ value }) => format(new Date(value), "dd/MM/yyyy"),
+		Cell: ({ value }) => format(new Date(value), "dd MMMM yyyy"),
 	},
 ];
