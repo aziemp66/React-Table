@@ -475,7 +475,7 @@ export const PaginationTable = () => {
 		usePagination
 	);
 
-	const { pageIndex, pageSize } = state.pagination;
+	const { pageIndex } = state;
 
 	return (
 		<>
