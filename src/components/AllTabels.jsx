@@ -312,7 +312,8 @@ export const ColumnFilterTable = () => {
 			defaultColumn,
 		},
 		useFilters,
-		useGlobalFilter
+		useGlobalFilter,
+		useSortBy
 	);
 
 	const { globalFilter } = state;
@@ -327,8 +328,19 @@ export const ColumnFilterTable = () => {
 							<tr {...headerGroup.getHeaderGroupProps()}>
 								{headerGroup.headers.map((column) => {
 									return (
-										<th {...column.getHeaderProps()}>
+										<th
+											{...column.getHeaderProps(
+												column.getSortByToggleProps()
+											)}
+										>
 											{column.render("Header")}
+											<div>
+												{column.isSorted
+													? column.isSortedDesc
+														? " 🔽"
+														: " 🔼"
+													: ""}
+											</div>
 											<div>
 												{column.canFilter
 													? column.render("Filter")

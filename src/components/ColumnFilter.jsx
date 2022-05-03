@@ -4,7 +4,7 @@ export const ColumnFilter = ({ column }) => {
 	const { filterValue, setFilter } = column;
 	return (
 		<span>
-			Search :{" "}
+			<div>Search : {` `}</div>
 			<input
 				value={filterValue || ""}
 				onChange={(e) => {
