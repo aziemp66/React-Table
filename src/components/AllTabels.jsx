@@ -96,6 +96,15 @@ export const CustomTable = () => {
 		getTableProps,
 		getTableBodyProps,
 		headerGroups,
+		page,
+		nextPage,
+		previousPage,
+		canPreviousPage,
+		canNextPage,
+		pageOptions,
+		pageCount,
+		gotoPage,
+		setPageSize,
 		footerGroups,
 		rows,
 		prepareRow,
@@ -109,10 +118,13 @@ export const CustomTable = () => {
 		},
 		useFilters,
 		useGlobalFilter,
-		useSortBy
+		useSortBy,
+		usePagination
 	);
 
-	const { globalFilter } = state;
+	const { globalFilter, pageIndex } = state;
+
+	console.log(rows.map((row) => row.original));
 
 	return (
 		<>
@@ -150,7 +162,7 @@ export const CustomTable = () => {
 					})}
 				</thead>
 				<tbody {...getTableBodyProps()}>
-					{rows.map((row) => {
+					{page.map((row) => {
 						prepareRow(row);
 						return (
 							<tr {...row.getRowProps()}>
@@ -181,6 +193,70 @@ export const CustomTable = () => {
 					})}
 				</tfoot>
 			</table>
+			<div>
+				<span>
+					Page{" "}
+					<strong>
+						{pageIndex + 1} of {pageOptions.length}
+					</strong>
+				</span>
+				<button
+					onClick={() => gotoPage(0)}
+					disabled={!canPreviousPage}
+				>{`<<`}</button>
+				<button
+					onClick={() => {
+						previousPage();
+					}}
+					disabled={!canPreviousPage}
+				>
+					Previous
+				</button>
+				<span>
+					| Go to page:
+					<input
+						type="number"
+						name="pageIndex"
+						id="pageIndex"
+						defaultValue={pageIndex + 1}
+						onChange={(e) => {
+							console.log(e.target.value);
+							const pageNumber = e.target.value
+								? Number(e.target.value) - 1
+								: 0;
+							gotoPage(pageNumber);
+						}}
+						style={{ width: "50px" }}
+					/>
+				</span>
+				<select
+					name="pageSize"
+					id="pageSize"
+					onChange={(e) => setPageSize(Number(e.target.value))}
+				>
+					{[10, 20, 30, 40, 50].map((pageSize) => (
+						<option key={pageSize} value={pageSize}>
+							{pageSize}
+						</option>
+					))}
+				</select>
+				<button
+					onClick={() => {
+						nextPage();
+					}}
+					disabled={!canNextPage}
+				>
+					Next
+				</button>
+				<button
+					onClick={() => {
+						gotoPage(pageCount - 1);
+					}}
+					disabled={!canNextPage}
+				>
+					{`>>`}
+				</button>
+			</div>
 		</>
 	);
 };
@@ -478,7 +554,7 @@ export const PaginationTable = () => {
 		usePagination
 	);
 
-	const { pageIndex, pageSize } = state;
+	const { pageIndex } = state;
 
 	return (
 		<>
